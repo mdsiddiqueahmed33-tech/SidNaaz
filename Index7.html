@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My One and Only — Naziya Parveen</title>
+  <meta name="description" content="A little website made with love." />
+  <meta name="theme-color" content="#ff6fa5" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --bg:#0f0f14; --card:#151725; --soft:#1d2032; --text:#f8f8ff; --muted:#b9bed6; --accent:#ff6fa5; --accent2:#7ad7f0; --glow:0 0 25px rgba(255,111,165,.45); --gold:#f5d08a; --ramadan-hero-top:#0e1230; --ramadan-hero-mid:#0a0f24; --ramadan-hero-bottom:#0a0c18; --ramadan-moon:#ffdca8; }
+    *{box-sizing:border-box}
+    html,body{ margin:0; background: radial-gradient(1200px 600px at -10% -20%,rgba(255,111,165,.12),transparent 60%), radial-gradient(900px 500px at 110% 10%,rgba(122,215,240,.12),transparent 60%), linear-gradient(180deg,#0b0c12,#15172a 40%,#0b0c12); color:var(--text); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif }
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ===================== GATE / INTRO ===================== */
+    .gate{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: radial-gradient(1200px 700px at -10% -10%,rgba(255,216,107,.08),transparent 60%), radial-gradient(900px 500px at 110% 0%,rgba(255,220,168,.10),transparent 60%), linear-gradient(180deg,#0a0e22,#0a0c18); z-index:99999; padding:20px; }
+    .gate-card{ position:relative; width:min(860px,95vw); background:rgba(21,23,37,.88); border:1px solid #2b2e55; border-radius:18px; padding:22px 18px 18px; box-shadow:0 0 26px rgba(255,220,168,.14); overflow:hidden; }
+    .gate h1{ margin:6px 0 4px; text-align:center; font-size:clamp(22px,3.4vw,34px); font-weight:800; letter-spacing:.2px }
+    .gate .bismi{ text-align:center; color:var(--gold); font-weight:700; margin-bottom:8px; text-shadow:0 0 10px rgba(245,208,138,.25); font-size:clamp(24px,3vw,38px) }
+    .gate .note{ margin:12px auto 10px; color:var(--muted); text-align:center; max-width:700px; line-height:1.7 }
+    .gate .list{ margin:12px auto; max-width:760px; display:grid; gap:10px }
+    .gate .li{ display:flex; gap:10px; background:#0f1122; border:1px solid #2b2e55; border-radius:12px; padding:10px 12px; align-items:flex-start }
+    .gate .li i{ width:22px;height:22px;border-radius:50%;background:#ffffff15;border:1px solid #ffffff25; display:inline-flex;align-items:center;justify-content:center;font-style:normal;flex-shrink:0 }
+    .gate .cta{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px }
+    .btn{ display:inline-flex; align-items:center; gap:8px; cursor:pointer; background:linear-gradient(135deg,var(--accent),#ff85b5); color:#0a0a0f; border:none; border-radius:999px; padding:12px 18px; font-weight:800 }
+    .btn.secondary{ background:#242741; color:var(--text); border:1px solid #2c3054 }
+    .gate-orn{ position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0 }
+    .gate-card > *{ position:relative; z-index:1 }
+    .float{ position:absolute;bottom:-40px;opacity:.92;animation:rise 9s linear forwards; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); user-select:none }
+    .float.star{ color:#ffd86b; text-shadow:0 0 10px rgba(255,216,107,.45), 0 0 18px rgba(255,216,107,.25) }
+    .float.moon{ color:var(--ramadan-moon); text-shadow:0 0 10px rgba(255,220,168,.40), 0 0 18px rgba(255,220,168,.25) }
+    @keyframes rise{ 0%{transform:translateY(10vh) translateX(0) rotate(0); opacity:0} 10%{opacity:1} 100%{transform:translateY(-120vh) translateX(var(--drift, 0px)) rotate(var(--rot, 0deg)); opacity:0} }
+
+    /* ===================== MAIN ===================== */
+    .wrap{max-width:1100px;margin:0 auto;padding:24px; display:none}
+    header.hero{ position:relative;overflow:hidden;border-radius:20px;background: radial-gradient(1200px 600px at -10% -20%,rgba(255,216,107,.10),transparent 60%), radial-gradient(900px 500px at 110% 10%,rgba(255,220,168,.12),transparent 60%), linear-gradient(180deg,var(--ramadan-hero-top),var(--ramadan-hero-mid) 55%,var(--ramadan-hero-bottom)); padding:64px 24px;text-align:center; box-shadow:0 0 28px rgba(255,220,168,.18) }
+    .bismillah{ font-weight:600;color:var(--gold);opacity:.95;letter-spacing:.3px;margin-bottom:10px; text-shadow:0 0 10px rgba(245,208,138,.25);font-size: clamp(32px, 5vw, 48px);}
+    .hero h1{font-size:clamp(30px,5vw,56px);margin:0 0 10px;font-weight:800;letter-spacing:.3px}
+    .hero p{color:var(--muted);font-size:clamp(14px,1.9vw,18px);margin:6px 0 18px}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:#ffffff10;color:#fff; border:1px solid #ffffff1a;padding:8px 12px;border-radius:999px;font-size:13px}
+    .ribbon{ margin:10px auto 8px; width:max-content; background:linear-gradient(135deg,#f5d08a,#ffdca8); color:#0c0c12; font-weight:800; letter-spacing:.2px; padding:8px 14px; border-radius:999px; box-shadow:0 0 18px rgba(245,208,138,.28) }
+    .ribbon small{ display:block; font-weight:600; color:#1a1a20; opacity:.8 }
+    .btn.inline{ display:inline-flex }
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+    .col-4{grid-column:span 4} .col-6{grid-column:span 6} .col-8{grid-column:span 8} .col-12{grid-column:span 12}
+    @media (max-width:900px){.col-4,.col-6,.col-8{grid-column:span 12}}
+    section{margin:26px 0}
+    .card{background:var(--card);border:1px solid #23264a;border-radius:16px;padding:18px}
+    .card h3{margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .hearts{pointer-events:none;position:absolute;inset:0;overflow:hidden}
+    .float.heart{ color:#ff6fa5 }
+    .float.white{ color:#ffffff; opacity:.95; text-shadow:0 0 10px rgba(255,255,255,.35) }
+    .float.star{ color:#ffd86b }
+    .float.moon{ color:#ramadan-moon }
+    .float.rose{ color:#ff5a72; text-shadow:0 0 8px rgba(255,90,114,.35) }
+    .float.red{ color:#ff3b3b }
+
+    /* gallery */
+    .grid{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+    .photo{position:relative;border-radius:12px;overflow:hidden;border:1px solid #2b2e55}
+    .photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -50px 80px rgba(0,0,0,.35)}
+    .photo img{width:100%;height:220px;object-fit:cover;display:block}
+
+    /* timeline */
+    .timeline{position:relative;padding-left:22px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:#2b2e55}
+    .t-item{position:relative;margin:16px 0;padding:12px 12px 12px 14px;background:var(--soft);border:1px solid #262a4f;border-radius:12px}
+    .t-item::before{content:"";position:absolute;left:-9px;top:16px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:var(--glow)}
+
+    /* footer & modal */
+    footer{opacity:.8;text-align:center;padding:26px 0}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;place-items:center;padding:18px}
+    .modal .box{max-width:640px;background:var(--card);border:1px solid #2b2e55;border-radius:16px;padding:18px}
+    .close{float:right;background:#ffffff15;border:1px solid #ffffff25;color:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}
+
+    /* ============ Confetti styles ============ */
+    .confetti-layer{ position:fixed; inset:0; pointer-events:none; z-index:99999; overflow:hidden; }
+    .confetti-piece{ position:absolute; width:8px; height:14px; border-radius:2px; opacity:0; transform:translateY(-20px) rotate(0deg); animation:confettiFall var(--dur,2.4s) ease-out forwards, confettiDrift var(--driftDur,2.4s) ease-in-out forwards; }
+    @keyframes confettiFall{ 0%{opacity:0; transform:translateY(-20px) rotate(0deg);} 10%{opacity:1} 100%{opacity:0; transform:translateY(110vh) rotate(var(--rot,360deg));}}
+    @keyframes confettiDrift{ 0%{margin-left:0} 50%{margin-left:var(--driftX,40px)} 100%{margin-left:0} }
+
+    /* ===================== LETTER PAGE (new) ===================== */
+    .letter-page{ display:none; min-height:100vh; padding:24px; background:
+      radial-gradient(1000px 500px at 10% -20%, rgba(255,111,165,.10), transparent 60%),
+      radial-gradient(900px 500px at 110% 10%, rgba(122,215,240,.10), transparent 60%),
+      linear-gradient(180deg, #0b0c12, #15172a 40%, #0b0c12);
+    }
+    .letter-wrap{ max-width:900px; margin:0 auto; position:relative; }
+    .letter-card{
+      position:relative; background:linear-gradient(180deg, #151725, #10121f);
+      border:1px solid #2b2e55; border-radius:18px; padding:24px;
+      box-shadow:0 0 26px rgba(255,111,165,.18);
+      overflow:hidden;
+    }
+    .letter-title{
+      margin:0 0 8px; text-align:center; font-size:clamp(22px,4.5vw,36px);
+      font-weight:800; letter-spacing:.3px; color:#fff;
+    }
+    .letter-sub{ text-align:center; color:var(--muted); margin:0 0 18px; }
+    .letter-actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:12px 0 18px; }
+    .btn.outline{ background:transparent; color:#fff; border:1px solid #2b2e55; }
+    .letter-paper{ position:relative; background:#14182b; border:1px dashed #2c3054; border-radius:16px; padding:18px; }
+    .letter-content{ font-size:18px; line-height:1.8; white-space:pre-line; color:#eaeaf7; }
+    .sig{ margin-top:16px; text-align:right; font-weight:600; color:#ffd6e6; }
+
+    .hearts-bg{ position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0; opacity:.20; }
+    .hearts-bg span{ position:absolute; font-size:26px; animation:floatUp 9s linear infinite; opacity:.9; filter: drop-shadow(0 0 8px rgba(255,105,135,.35)); }
+
+    /* Pause animations helper used during PDF capture */
+    .freeze, .freeze *{ animation-play-state: paused !important; }
+
+    @keyframes floatUp{
+      0%{ transform:translateY(40px) translateX(0) rotate(0deg); opacity:.0 }
+      10%{ opacity:.9 }
+      100%{ transform:translateY(-120%) translateX(var(--x,0)) rotate(var(--r,0deg)); opacity:0 }
+    }
+  </style>
+</head>
+<body>
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="gate-orn" id="gateOrn"></div>
+      <div class="bismi">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</div>
+      <h1>To: <span style="color:#ffdca8">Naziya</span> — a truthful intention from my heart</h1>
+      <p class="note">I’ve written this with care and with Allah as my witness. I want to love you in a way that is pure, protected and pleasing to Him — to walk with you with mercy, patience and barakah.</p>
+      <div class="list">
+        <div class="li"><i>🤍</i><span><strong>My intention</strong> is nikah — a halal, safe and honourable future together, InshaAllah.</span></div>
+        <div class="li"><i>🌙</i><span><strong>My promise</strong> is to guard your heart and haya, to communicate gently, and to choose you daily.</span></div>
+        <div class="li"><i>⭐</i><span><strong>My plan</strong> is to involve our families respectfully, seek guidance, and build a home of rahmah.</span></div>
+        <div class="li"><i>📿</i><span><strong>My effort</strong> is dua, istiqamah and growth — to take us both closer to Allah.</span></div>
+      </div>
+      <div class="cta">
+        <button class="btn" id="enterBtn">Yes, show me what’s in your heart ❤️</button>
+        <button class="btn secondary" id="laterBtn" title="You can always return">Maybe later</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" id="app">
+    <header class="hero card">
+      <div class="hearts" id="hearts"></div>
+      <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيم</div>
+      <div class="badge">💌 Hand‑coded with love</div>
+      <div class="ribbon">Ramadan Kareem — To my true love, <strong>Naziya</strong><small>May Allah fill our hearts with mercy, patience, and barakah. 🤍</small></div>
+      <h1 id="title">For <span style="color:var(--accent)">My One and Only</span> — Naziya Parveen</h1>
+      <p class="muted" id="subtitle">I built this with my own hands, for the heart that Allah placed so deeply inside mine.</p>
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn inline" id="openSurprise">Open Mohabbat Nama ✨</button>
+      </div>
+    </header>
+
+    <section class="row">
+      <div class="col-4 card">
+        <h3>Days Since We Met</h3>
+        <p class="muted" id="daysMessage" style="white-space:pre-line; margin-top:6px"></p>
+      </div>
+      <div class="col-4 card">
+        <h3>My Promises (Wada) to You</h3>
+        <div class="promises" id="promisesList"></div>
+        <p class="muted">These are my intentions — written and kept, InshaAllah.</p>
+      </div>
+      <div class="col-4 card">
+        <h3>Secret Note from Siddique Ahmed 🔐</h3>
+        <p class="muted">Type <code id="secretKeyLabel"></code> to reveal.</p>
+        <input id="secretInput" placeholder="Enter the secret..." style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b2e55;background:#0f1122;color:#fff">
+        <div id="secretNote" class="note" style="display:none;margin-top:10px"></div>
+      </div>
+    </section>
+
+    <!-- ===================== PHOTOS ===================== -->
+    <section class="card" id="photosSection">
+      <h3>My Plans with my Dulhan - Naziya Parveen 📷 InshaAllah</h3>
+      <p class="muted">A handful of memories that always make me smile.</p>
+      <div class="grid" id="gallery"></div>
+    </section>
+
+    <section class="card">
+      <h3>Our Story ⏳</h3>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="card">
+      <h3>Reasons I adore you 💗</h3>
+      <div id="reasons"></div>
+    </section>
+
+    <!-- Inline Letter section (kept, not triggered by modal) -->
+    <section class="card" id="loveLetterSection" style="display:none;">
+      <h3>My Letter to You, Naziya 💌</h3>
+      <div id="loveLetterText" class="muted" style="white-space:pre-line;"></div>
+    </section>
+
+    <footer>Made by <span id="yourNameTag">me</span> for <span id="herNameTag">you</span> • <span class="muted">Always.</span></footer>
+  </div>
+
+  <div class="modal" id="modal" style="display:none;">
+    <div class="box">
+      <button class="close" id="closeModal">Close ✖</button>
+      <h2>The Words I’ve Been Holding Inside… 💌</h2>
+      <p id="surpriseText" style="font-size:18px;line-height:1.6"></p>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn" id="confetti">Yes 💗🎊</button>
+        <button class="btn secondary" id="openInlineLetter">Read My Feelings 💌</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== LETTER PAGE (SPA section) ===================== -->
+  <section class="letter-page" id="letterPage" aria-hidden="true">
+    <div class="letter-wrap">
+      <div class="letter-actions" id="letterActions">
+        <button class="btn outline" id="backToMain">⬅ Back</button>
+        <button class="btn" id="downloadPdf">⬇ Download as PDF</button>
+      </div>
+
+      <div class="letter-card" id="letterCard">
+        <!-- soft floating hearts in background -->
+        <div class="hearts-bg" id="heartsBg"></div>
+
+        <h2 class="letter-title">With Allah as My Witness — My Heart Speaks 🤍</h2>
+        <p class="letter-sub">A sincere letter to <strong>Naziya</strong>, from <strong>Siddique</strong></p>
+
+        <div class="letter-paper" id="letterPaper">
+          <div class="letter-content" id="fullLetterText"></div>
+          <div class="sig">— Syed Mohammed Siddique Ahmed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bgm" preload="metadata">
+    <source id="bgmSrc" src="My_Biwi_Naziya_Parveen_InshaAllah.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- PDF libs -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const START_AT = 11; // seconds
+
+      /***** PERSONALIZE *****/
+      const CONFIG = {
+        herName: "Naziya",
+        yourName: "Siddique",
+        title: "For My One and Only — Naziya Parveen",
+        subtitle: "I built this with my own hands, for the heart that Allah placed so deeply inside mine.",
+        dateWeMet: "2024-12-28",
+        secretKey: "SidNaaz",
+        secretNote:
+"My heart doesn’t lie — it chooses you every single day. And if Allah wills, I want a life with you. A future with you. I want to hold your hand through everything, and I want us to stay together in a way that is written, blessed, and protected. InshaAllah.\n\n" +
+"You have become a part of my duas in a way I never imagined. Every time I talk to Allah, your name finds its place without effort.\n" +
+"I ask Him to guard your heart, to keep you happy, and to fill your life with Noor.\n\n" +
+"I pray that whatever is written for us comes with ease, with goodness, and with barakah. And if I am written for you, may Allah make me someone who brings peace into your life, not tests.\n\n" +
+"Wallahi, my intention with you is clean, sincere, and for His sake. I want to love you in a way that is halal, safe, and pleasing to Allah — not just in this duniya, but all the way to Jannah, InshaAllah.",
+        surpriseLetter:
+"I have fallen for you in a way I never expected. You are the softness in my heart, the calm in my storms, and the one I think of in every quiet moment. Wallahi, I am madly, sincerely, and deeply in love with you — in a way that is pure, clean, and intentional. I don’t want this to be temporary. I want you in my life the halal way — today, tomorrow, and for as long as Allah allows our souls to breathe. You are my first, and InshaAllah, my last. Will you let me be yours, completely and forever, InshaAllah?",
+        photos: ["Image1.PNG","Image4.JPG","Image3.JPG","Image2.JPG","Image5.JPG","Image6.JPG"],
+        moments: [
+          ["2024-12-28","When Allah wrote our paths to cross","Didn’t know it then, but my world changed."],
+          ["2025-02-18","First I reached out to you","Half the distance, twice the heartbeats."],
+          ["2024-12-28","The day I started making dua for you (for my Humsafar)","Quiet duas, loud hopes — without even knowing it would be Naziya Parveen"],
+          ["2025-10-03","This day","I'm confessing that I have a lot of love for you"]
+        ],
+        reasonsILoveYou: [
+          "💗 You bring sakoon (peace) to my heart",
+          "🙏 You are the dua I didn’t know I was making",
+          "🌸 You make life softer, kinder, and lighter",
+          "✨ You inspire me to become a better man every single day",
+          "❤️ My heart chooses you, again and again, without hesitation",
+          "🌙 I want to walk with you till Jannah, InshaAllah",
+          "💞 With you, everything finally makes sense",
+          "🤍 And Again i say it Syed Mohammed Siddique Ahmed loves you a lot — more than words can ever capture, for the sake of Allah and with a sincere heart"
+        ],
+        promises: [
+          "I promise to protect your heart and your haya — always.",
+          "I promise to choose you every single day with sabr and shukr.",
+          "I promise to make dua for you and take us closer to Allah.",
+          "I promise to communicate gently and listen with love and patience.",
+          "I promise to build a home filled with mercy, warmth, and barakah, InshaAllah.",
+          "I promise to be your safest place — emotionally and spiritually.",
+          "I promise to stand by you in ease and hardship with full yaqeen in Allah.",
+          "I promise to love you in a way that is halal, pure, and pleasing to Allah.",
+          "I promise to honour, respect, and uplift you in every step of life.",
+          "With Allah as my witness, I promise to strive to be the man who leads you to Jannah — not just the one who loves you in this dunya."
+        ],
+        daysMessage:
+"🌙 Our meeting was unexpected, our bond unknowingly formed...\n" +
+"📖 Yet written by Allah long before we ever realized.\n" +
+"❤️ You became the warmth inside my heart —\n" +
+"👀 the one my eyes search for, whether they are closed or open.\n" +
+"🤍 You became my life, my comfort, my forever.\n" +
+"\n" +
+"🙏 In every quiet moment, I thank Allah for you.\n" +
+"🕌 In every sujood, I make dua for you.\n" +
+"\n" +
+"💫 I pray that He keeps our hearts connected with sincerity,\n" +
+"🌸 fills them with mercy and barakah,\n" +
+"✨ and allows me to be the love of your life — not just in this duniya, but in the Akhirah too, InshaAllah.\n" +
+"\n" +
+"🤲 May Allah unite our paths with goodness and fill them with Noor, peace, and halal love.\n" +
+"🌙 And may He make me someone who brings you closer to Him — today, tomorrow, and for all the days He grants us."
+      };
+      /***** END PERSONALIZE *****/
+
+      // Elements
+      const gate = document.getElementById('gate');
+      const app  = document.getElementById('app');
+      const enterBtn = document.getElementById('enterBtn');
+      const laterBtn = document.getElementById('laterBtn');
+      const gateOrn  = document.getElementById('gateOrn');
+      const hearts = document.getElementById('hearts');
+      const audio = document.getElementById('bgm');
+      const audioSrc = document.getElementById('bgmSrc');
+      const defaultSrc = audioSrc ? audioSrc.getAttribute('src') : 'My_Biwi_Naziya_Parveen_InshaAllah.mp3';
+
+      // ======= AUDIO HELPERS (swap src + loop control) =======
+      function tryPlay(){
+        const p = audio.play();
+        if (p && typeof p.then === 'function') {
+          p.then(()=>{}).catch(err=>console.warn('[Audio] Autoplay might be blocked]:', err));
+        }
+      }
+      function loadAndPlay(src, { offset=0, loop=false, volume=0.85 } = {}){
+        if (!audio) return;
+        audio.pause();
+        audio.loop = !!loop;
+        audio.volume = volume;
+        if (audioSrc) { audioSrc.src = src; audio.load(); }
+        else { audio.src = src; audio.load(); }
+        audio.addEventListener('loadedmetadata', function onMeta(){
+          audio.removeEventListener('loadedmetadata', onMeta);
+          audio.currentTime = Math.min(offset, audio.duration || offset);
+          tryPlay();
+        });
+      }
+      function startMusicFrom(offset){
+        if (!audio) return;
+        if (audio.readyState >= 1){ // HAVE_METADATA
+          audio.currentTime = offset; audio.volume = 0.85; tryPlay();
+        } else {
+          const onMeta = ()=>{ audio.removeEventListener('loadedmetadata', onMeta); audio.currentTime = offset; audio.volume = 0.85; tryPlay(); };
+          audio.addEventListener('loadedmetadata', onMeta);
+          audio.load();
+        }
+      }
+
+      // Gate -> Main
+      function openMain(){
+        try{ gate.remove(); }catch(e){ gate.style.display='none'; gate.style.pointerEvents='none'; }
+        app.style.display='block';
+        window.scrollTo({top:0, behavior:'smooth'});
+        if (audioSrc) audioSrc.src = defaultSrc;
+        startMusicFrom(START_AT);
+      }
+      enterBtn.addEventListener('click', openMain);
+      laterBtn.addEventListener('click', openMain);
+
+      // Decorative floats (gate)
+      function spawnGate(){
+        const e = document.createElement('div');
+        const r = Math.random();
+        const pick = (r < 0.55) ? {cls:'moon', glyph:'🌙'} : {cls:'star', glyph:['⭐','✦','✧'][Math.floor(Math.random()*3)]};
+        e.className = 'float ' + pick.cls;
+        e.textContent = pick.glyph;
+        e.style.left = Math.random()*100 + '%';
+        e.style.fontSize = (12 + Math.random()*18) + 'px';
+        e.style.animationDuration = (6 + Math.random()*7) + 's';
+        e.style.setProperty('--drift', (Math.random()*160 - 80) + 'px');
+        e.style.setProperty('--rot', (Math.random()*120 - 60) + 'deg');
+        e.style.bottom = (-20 - Math.random()*40) + 'px';
+        gateOrn.appendChild(e);
+        setTimeout(()=>e.remove(), 15000);
+      }
+      setInterval(spawnGate, 380);
+
+      // Bind texts
+      document.getElementById('title').textContent = CONFIG.title;
+      document.getElementById('subtitle').textContent = CONFIG.subtitle;
+      const yourNameTag = document.getElementById('yourNameTag');
+      const herNameTag  = document.getElementById('herNameTag');
+      if (yourNameTag) yourNameTag.textContent = CONFIG.yourName;
+      if (herNameTag)  herNameTag.textContent  = CONFIG.herName;
+      document.getElementById('secretKeyLabel').textContent = CONFIG.secretKey;
+      document.getElementById('surpriseText').textContent = CONFIG.surpriseLetter;
+      document.getElementById('daysMessage').textContent = CONFIG.daysMessage;
+
+      // Promises
+      const promisesEl = document.getElementById('promisesList');
+      (function renderPromises(){
+        if (!promisesEl) return;
+        promisesEl.innerHTML = '';
+        CONFIG.promises.forEach(p=>{
+          const row = document.createElement('div'); row.className = 'promise';
+          const text = document.createElement('span'); text.textContent = p;
+          row.appendChild(text); promisesEl.appendChild(row);
+        });
+      })();
+
+      // ===== Hero floaters =====
+      function pickGlyph(){
+        const r = Math.random();
+        if (r < 0.22) return {cls:'red', glyph:'❤️'};
+        else if (r < 0.36) return {cls:'rose', glyph:'🌹'};
+        else if (r < 0.48) return {cls:'heart', glyph:'❤'};
+        else if (r < 0.70) return {cls:'star',  glyph:['⭐','✦','✧'][Math.floor(Math.random()*3)]};
+        else if (r < 0.82) return {cls:'white', glyph:'🤍'};
+        else               return {cls:'moon',  glyph:'🌙'};
+      }
+      function spawnFloat(){
+        const e = document.createElement('div');
+        const pick = pickGlyph();
+        e.className = 'float ' + pick.cls;
+        e.textContent = pick.glyph;
+        e.style.left = Math.random()*100 + '%';
+        e.style.fontSize = (14 + Math.random()*24) + 'px';
+        e.style.animationDuration = (5.0 + Math.random()*5.5) + 's';
+        e.style.setProperty('--drift', (Math.random()*180 - 90) + 'px');
+        e.style.setProperty('--rot', (Math.random()*140 - 70) + 'deg');
+        e.style.bottom = (-20 - Math.random()*40) + 'px';
+        hearts.appendChild(e);
+        setTimeout(()=>e.remove(), 15000);
+      }
+      setInterval(spawnFloat, 360);
+
+      // ===== Gallery =====
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      CONFIG.photos.forEach(src=>{
+        const fig = document.createElement('figure'); fig.className = 'photo';
+        const img = document.createElement('img'); img.loading='lazy'; img.src=src; img.alt='Our photo';
+        fig.appendChild(img); gallery.appendChild(fig);
+      });
+
+      // ===== Timeline =====
+      const timeline = document.getElementById('timeline');
+      CONFIG.moments.forEach(([date,title,desc])=>{
+        const div = document.createElement('div'); div.className='t-item';
+        const d = new Date(date+'T00:00:00');
+        div.innerHTML = `<strong>${d.toLocaleDateString()}</strong> — ${title}<br><span class="muted">${desc}</span>`;
+        timeline.appendChild(div);
+      });
+
+      // ===== Reasons =====
+      const reasons = document.getElementById('reasons');
+      CONFIG.reasonsILoveYou.forEach(r=>{
+        const span = document.createElement('span'); span.className='pill'; span.textContent=r; reasons.appendChild(span);
+      });
+
+      // ===== Secret note =====
+      const secretInput = document.getElementById('secretInput');
+      const secretNote = document.getElementById('secretNote');
+      secretInput.addEventListener('input',()=>{
+        if(secretInput.value.trim().toLowerCase()===CONFIG.secretKey.toLowerCase()){
+          secretNote.style.display='block'; secretNote.textContent = CONFIG.secretNote;
+        } else secretNote.style.display='none';
+      });
+
+      // ===== Modal + AUDIO1 loop while open =====
+      const modal = document.getElementById('modal');
+      const openBtn = document.getElementById('openSurprise');
+      const closeBtn = document.getElementById('closeModal');
+
+      function openIntroModal(){
+        modal.style.display='grid';
+        // Play Audio1 in loop while modal is open
+        loadAndPlay('Audio1.mp3', { offset: 0, loop: true, volume: 0.9 });
+      }
+      function closeIntroModal(){
+        modal.style.display='none';
+        // Resume default track at 11s, no loop
+        loadAndPlay(defaultSrc, { offset: START_AT, loop: false, volume: 0.85 });
+      }
+      openBtn.addEventListener('click', openIntroModal);
+      closeBtn.addEventListener('click', closeIntroModal);
+      modal.addEventListener('click', (e)=>{ if(e.target===modal) closeIntroModal(); });
+
+      /* ========= Confetti wiring ========= */
+      const confettiBtn = document.getElementById('confetti');
+      if (confettiBtn){ confettiBtn.onclick = fireConfetti; }
+      function fireConfetti(){
+        const layer = document.createElement('div');
+        layer.className = 'confetti-layer';
+        document.body.appendChild(layer);
+        const colors = ['#ff6fa5','#7ad7f0','#ffd86b','#a7f3d0','#c4b5fd','#fca5a5','#f5d08a'];
+        const pieces = 160;
+        for (let i=0; i<pieces; i++){
+          const d = document.createElement('div');
+          d.className = 'confetti-piece';
+          d.style.left = (Math.random()*100) + 'vw';
+          d.style.top  = (-10 - Math.random()*20) + 'vh';
+          d.style.background = colors[Math.floor(Math.random()*colors.length)];
+          d.style.transform = `rotate(${Math.floor(Math.random()*360)}deg)`;
+          d.style.setProperty('--rot', (200 + Math.random()*520) + 'deg');
+          d.style.setProperty('--driftX', (Math.random()*120 - 60) + 'px');
+          d.style.setProperty('--dur', (2.1 + Math.random()*0.8) + 's');
+          d.style.setProperty('--driftDur', (1.6 + Math.random()*0.8) + 's');
+          const w = 6 + Math.floor(Math.random()*8);
+          const h = 10 + Math.floor(Math.random()*10);
+          d.style.width  = w + 'px';
+          d.style.height = h + 'px';
+          d.style.opacity = 0;
+          d.style.animationDelay = (Math.random()*0.25) + 's';
+          layer.appendChild(d);
+        }
+        setTimeout(()=>{ layer.remove(); }, 2800);
+      }
+
+      /* ===== Read My Feelings -> navigate to Letter Page ===== */
+      const openInlineLetterBtn = document.getElementById('openInlineLetter');
+      const letterPage = document.getElementById('letterPage');
+      const heartsBg = document.getElementById('heartsBg');
+      const fullLetterText = document.getElementById('fullLetterText');
+      const backToMain = document.getElementById('backToMain');
+      const downloadPdf = document.getElementById('downloadPdf');
+
+      const LETTER_TEXT =
+`Meri Hone Wali Biwi Jaan - InshaAllah This is for You meri Shehazadi
+
+Meri Naaz, One in a Million ? Nahhhh One beyond Millions💞💖
+Mai aapse tab tak mohabbat karunga ❤️ InshaAllah jab tak Allah meri saansein mujhse na cheen le.
+
+Aapke liye… aapki ek muskurahat 😊 ke liye… Mai apni saansein tak girvi rakh doon. Aapse zyada pyaara,
+aapse zyada azeez 💞 mere liye kuch nahi hai.
+
+Jis-jis jagah mujhe laga ki mera Allah meri dua qubool karega 🤲, maine har jagah sirf aapko hi manga hai.
+
+Naziya,
+Aapke zikr ke bina meri koi dua poori nahi hoti 🤍. Jab aap paas hoti hain, duniya aur bhi khoobsurat lagti hai 🌍✨,
+aur jab aap haste ho na, toh woh ek muskurahat meri rooh ko khush kar deti hai 😊🌸.
+
+Jab main aapki tareef karta hoon aur aap sharma kar abababa kehte ho 🥺💗, toh us pal aap mujhe aur bhi haseen lagti ho, meri Naziya Parveen.
+
+Aapki aankhein 🌅 suraj ke kinare jaise chamakti hain, aapki adaayein be-misaal 💫,
+aur har libaas meri shehzadi 👑 par kamaal se bhi zyada kamaal lagta hai.
+
+Kabhi kabhi main sochta hoon — aap itni haseen kaise ho sakti ho? 😍
+
+Aapki masoomiyat itni sachchi, itni gehri hai ki kai baar aap ek chhoti si nadan gudiya jaisi lagti ho 🧸💗.
+Mere dil se yeh dua hai — aap kabhi badalna mat. Aap jaisi hain, waise hi meri zindagi ki sabse haseen daulat hain 💎❤️.
+
+Aapka naam sun kar hi mera dil sukoon se bhar jaata hai 🤍, aur aapki awaaz sun kar mera poora din khushi se guzar jaata hai ☀️😊.
+
+Main chahta hoon aap itni kareeb ho jaayein ki jab bhi dil chahe main aapko gale laga sakun 🤗💕.
+Main aapki har chhoti khushi ka khayal rakhun, aapki har chhoti zarurat samajh sakun — Meri pyaari Naziya 💗.
+
+Main aapki pasand ka khana banaun 🍽️ aur apne haathon se aapko khilaaun.
+Jab aap thak jaayein, aapke baalon mein haath pher kar aapki saari thakan mita doon 😌💆‍♀️.
+
+Kabhi kabhi, hamare kamre ke favourite corner mein soft music chale 🎶, hum dono saath dinner karein —
+bas woh hamari perfect little date night ho 💑✨ InshaAllah.
+
+Naziya, main aapke saath duniya dekhna chahta hoon 🌍🤝, aapka haath pakad kar har jagah hamari mohabbat ke nishaan chhodna chahta hoon 💞✨.
+
+Main aapke saath budha hona chahta hoon 👴👵💗 — zindagi ko dheere dheere aapke saath khilta hua dekhna chahta hoon 🌸💞.
+Aur ek din, InshaAllah… main aapke saath apni ek chhoti si duniya banana chahta hoon 🏡❤️.
+
+Ek ghar, jahan har deewar hamari mohabbat ki kahani kahe 🖼️💘. Ek parivaar, jise hum dono “hamara ghar” kahen 👨‍👩‍👧‍👦✨.
+
+Har mod par main aapka saath nibhaunga 🤲💗. Aapke liye zarurat padi toh duniya se takra jaunga 💥💪.
+Aapke liye koi aaye ya na aaye, par main zaroor aaunga ❤️.
+
+Aapke bagair, khuda ki kasam, sukoon nahi milta 😔🤍.
+Aur sach yeh hai — main tab bhi aapka hi rahunga jab main iss duniya mein nahi rahunga.
+
+InshaAllah, mera pyaar aapke liye kabhi kam nahi hoga — na waqt ke saath, na halaat ke saath, na umr ke saath 💞✨.
+
+Ya Allah, make me her peace, her comfort, her safest place. 🤲🤍
+
+Aur aaj dil se ek baat… I love you, Naziya Parveen.
+Love you a lot. Mujhe aapse Nikah karna hai. Kya aap meri Biwi banengi? 💍❤️`;
+
+      // sprinkle floating hearts on letter page background
+      function seedHeartsBg(){
+        if (!heartsBg) return;
+        heartsBg.innerHTML = '';
+        const glyphs = ['❤️','💖','💗','💞','💘','💓','💝'];
+        const count = 26;
+        for (let i=0;i<count;i++){
+          const s = document.createElement('span');
+          s.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+          s.style.left = (Math.random()*100)+'%';
+          s.style.bottom = (-20 - Math.random()*60)+'px';
+          s.style.setProperty('--x', (Math.random()*160 - 80)+'px');
+          s.style.setProperty('--r', (Math.random()*120 - 60)+'deg');
+          s.style.fontSize = (20 + Math.random()*28)+'px';
+          s.style.animationDuration = (7 + Math.random()*6)+'s';
+          s.style.animationDelay = (Math.random()*3)+'s';
+          heartsBg.appendChild(s);
+        }
+      }
+
+      function showLetterPage(){
+        fullLetterText.textContent = LETTER_TEXT;
+        seedHeartsBg();
+        app.style.display = 'none';
+        letterPage.style.display = 'block';
+        letterPage.setAttribute('aria-hidden','false');
+        window.scrollTo({top:0, behavior:'smooth'});
+        try { history.pushState({}, '', '#letter'); } catch(e){}
+      }
+      function hideLetterPage(){
+        letterPage.style.display = 'none';
+        letterPage.setAttribute('aria-hidden','true');
+        app.style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+        try { if (location.hash === '#letter') history.pushState({}, '', location.pathname + location.search); } catch(e){}
+      }
+
+      // Navigate to Letter Page from modal button (single handler)
+      if (openInlineLetterBtn){
+        openInlineLetterBtn.addEventListener('click', ()=>{
+          closeIntroModal();
+          showLetterPage();
+        });
+      }
+      if (backToMain){
+        backToMain.addEventListener('click', hideLetterPage);
+      }
+
+      // ===== PDF DOWNLOAD (fixed last-page cut-off) =====
+async function downloadLetterPDF() {
+  const actionsBar = document.getElementById('letterActions');
+  const card = document.getElementById('letterCard');
+
+  // 1) Hide actions + pause animations for clean capture
+  const oldVisibility = actionsBar.style.visibility;
+  actionsBar.style.visibility = 'hidden';
+  card.classList.add('freeze'); // ensure you have .freeze { animation-play-state: paused !important; }
+
+  // 2) Capture entire card
+  const canvas = await html2canvas(card, {
+    backgroundColor: null,
+    scale: Math.max(2, window.devicePixelRatio || 2),
+    useCORS: true,
+    windowWidth: document.documentElement.scrollWidth,
+    windowHeight: document.documentElement.scrollHeight
+  });
+
+  // Restore UI
+  actionsBar.style.visibility = oldVisibility;
+  card.classList.remove('freeze');
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+
+  const pageW = pdf.internal.pageSize.getWidth();
+  const pageH = pdf.internal.pageSize.getHeight();
+  const margin = 30;
+  const drawW = pageW - margin * 2;
+  const usableHpt = pageH - margin * 2;
+
+  // Scale in PDF points per canvas pixel (fit width)
+  const ptPerPx = drawW / canvas.width;
+
+  // ---------- Find a SAFE CUT near the middle ----------
+  function findSafeCutY(srcCanvas, targetY, scanHalf = 200) {
+    const w = srcCanvas.width;
+    const h = srcCanvas.height;
+    const start = Math.max(0, targetY - scanHalf);
+    const bandH = Math.min(h - start, scanHalf * 2 + 1);
+
+    const ctx = srcCanvas.getContext('2d');
+    const data = ctx.getImageData(0, start, w, bandH).data;
+
+    // Your background #0b0c12 luminance
+    const bgL = (0.2126 * 11 + 0.7152 * 12 + 0.0722 * 18); // ≈11.9
+
+    let bestRow = 0;
+    let bestScore = Infinity;
+
+    // Sample every 'step' pixels horizontally to cut work
+    const step = Math.max(2, Math.floor(w / 400));
+
+    for (let row = 0; row < bandH; row++) {
+      let gradSum = 0;
+      let avgL = 0;
+      let prevL = null;
+      let samples = 0;
+
+      for (let x = 0; x < w; x += step) {
+        const idx = (row * w + x) * 4;
+        const r = data[idx], g = data[idx + 1], b = data[idx + 2];
+        const L = 0.2126 * r + 0.7152 * g + 0.0722 * b; // luminance
+
+        if (prevL !== null) gradSum += Math.abs(L - prevL);
+        prevL = L;
+        avgL += L;
+        samples++;
+      }
+
+      if (samples === 0) continue;
+      avgL /= samples;
+
+      // Score: prefer rows close to bg luminance and with low horizontal gradient
+      const score = gradSum * 1.0 + Math.abs(avgL - bgL) * 0.6;
+
+      if (score < bestScore) {
+        bestScore = score;
+        bestRow = row;
+      }
+    }
+
+    return start + bestRow; // Y in canvas px
+  }
+
+  // Ideal slice height in canvas pixels to fill exactly one page height
+  const idealSlicePx = usableHpt / ptPerPx;
+
+  // Target cut near the middle
+  const midY = Math.floor(canvas.height / 2);
+  const approxFirstSlicePx = Math.floor(idealSlicePx);
+  const targetY = Math.min(canvas.height - 1, Math.max(1, approxFirstSlicePx));
+
+  // Search a safe row near the middle (±200px window)
+  const safeCutY = findSafeCutY(canvas, Math.min(midY, targetY), 200);
+
+  // Enforce bounds
+  const cutY = Math.min(Math.max(1, safeCutY), canvas.height - 1);
+
+  // ---------- Helpers ----------
+  const fillPageBg = () => {
+    pdf.setFillColor(11, 12, 18); // #0b0c12
+    pdf.rect(0, 0, pageW, pageH, 'F');
+  };
+
+  function makeSlice(srcCanvas, sY, slicePx) {
+    const c = document.createElement('canvas');
+    c.width = srcCanvas.width;
+    c.height = slicePx;
+    const cx = c.getContext('2d');
+    cx.fillStyle = '#0b0c12';
+    cx.fillRect(0, 0, c.width, c.height);
+    cx.drawImage(srcCanvas, 0, sY, srcCanvas.width, slicePx, 0, 0, c.width, slicePx);
+    return c;
+  }
+
+  // ---------- Page 1: 0 .. cutY ----------
+  const slice1Px = cutY;
+  const c1 = makeSlice(canvas, 0, slice1Px);
+  const drawH1 = slice1Px * ptPerPx;
+
+  pdf.setPage(1);
+  fillPageBg();
+  pdf.addImage(c1.toDataURL('image/png'), 'PNG', margin, margin, drawW, drawH1, undefined, 'FAST');
+
+  // ---------- Page 2: cutY .. end ----------
+  const slice2Px = canvas.height - cutY;
+  const c2 = makeSlice(canvas, cutY, slice2Px);
+  const drawH2 = slice2Px * ptPerPx;
+
+  pdf.addPage();
+  fillPageBg();
+  pdf.addImage(c2.toDataURL('image/png'), 'PNG', margin, margin, drawW, drawH2, undefined, 'FAST');
+
+  // Soft 1px blend bar at top of page 2 (covers viewer hairline seams)
+  pdf.setDrawColor(11, 12, 18);
+  pdf.setFillColor(11, 12, 18);
+  pdf.rect(margin, margin - 1, drawW, 2, 'F');
+
+  /*// Footer only on page 2
+  pdf.setFontSize(11);
+  pdf.setTextColor(255, 105, 135);
+  const footer = "❤️ With love, Siddique → For Naziya Parveen ❤️";
+  const wTxt = pdf.getTextWidth(footer);
+  pdf.text(footer, (pageW - wTxt) / 2, pageH - 20);*/
+
+  // Defensive: ensure exactly 2 pages
+  const total = pdf.internal.getNumberOfPages();
+  if (total > 2) {
+    for (let p = total; p > 2; p--) pdf.deletePage(p);
+  }
+
+  pdf.save('Love_Letter_for_Naziya.pdf');
+}
+
+      const downloadBtn = document.getElementById('downloadPdf');
+      if (downloadBtn){
+        downloadBtn.addEventListener('click', downloadLetterPDF);
+      }
+
+      // Support direct link to #letter
+      if (location.hash === '#letter'){
+        try{ gate.remove(); }catch(e){}
+        app.style.display='block';
+        showLetterPage();
+      }
+    });
+  </script>
+</body>
+</html>
